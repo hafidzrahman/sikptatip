@@ -43,12 +43,7 @@ export default function({params}) {
 
                 if (total !== initialValue.current.value && !initialValue.current.isCreated) {
                     accountData.history.unshift({});
-                    initialValue.current.isCreated = true;
-                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
-                    accountData.history.shift();
-                    initialValue.current.isCreated = false;
-                }
-                const present = new Date()
+                    const present = new Date()
                 if (motivasiDanSemangatValue  && tanggungJawabTAValue && keuletanDalamPenelitianValue && tanggungJawabTAValue) {
                     evaluatedStudent.status = 'rated';
                     accountData.history[0] = {description : `Anda telah menginputkan nilai Bimbingan TA ${student.nama} dengan nilai ${total}`, date : {date : `${present.getFullYear()}-${present.getMonth()}-${present.getDate()}`, time : {hour : present.getHours(), minute : present.getMinutes()}}};
@@ -58,6 +53,12 @@ export default function({params}) {
                 } else {
                     evaluatedStudent.status = 'not-rated';
                 }
+                    initialValue.current.isCreated = true;
+                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
+                    accountData.history.shift();
+                    initialValue.current.isCreated = false;
+                }
+                
 
                 evaluatedStudent.nilai.motivasiDanSemangat = motivasiDanSemangatValue;
                 evaluatedStudent.nilai['tanggung-jawabTA'] = tanggungJawabTAValue;
@@ -84,7 +85,7 @@ export default function({params}) {
             <p>{student.NIM}</p>
         </div>
     </div>
-    <p className={classes['judul-ta']}><span>JUDUL TA : </span>{student.judul}</p>
+    <div className={classes['judul-ta']}><p>JUDUL TA : </p><p>{student.judul}</p></div>
     <p className={classes.penilaian}>Penilaian : </p>
     <div className={classes['input-wrapper']}>
     <InputNilai text="Motivasi dan Semangat : " id="motivasiDanSemangat" type="text" onChange={(e) => setMotivasiDanSemangatValue(e.target.value)} value={motivasiDanSemangatValue}/>

@@ -54,12 +54,8 @@ export default function({params}) {
 
                 if (total !== initialValue.current.value && !initialValue.current.isCreated) {
                     accountData.history.unshift({});
-                    initialValue.current.isCreated = true;
-                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
-                    accountData.history.shift();
-                    initialValue.current.isCreated = false;
-                }
-                const present = new Date()
+
+                    const present = new Date()
                 if (sikapPresentasiValue && kemampuanPresentasiValue && relevansiValue && kesesuaianValue && teknikValue && tahapanAnalisaValue && tahapanPerancanganValue && produkPenelitianValue && hubunganValue) {
                     evaluatedStudent.status = 'rated';
                     accountData.history[0] = {description : `Anda telah menginputkan nilai Seminar TA ${student.nama} dengan nilai ${total}`, date : {date : `${present.getFullYear()}-${present.getMonth()}-${present.getDate()}`, time : {hour : present.getHours(), minute : present.getMinutes()}}};
@@ -69,6 +65,13 @@ export default function({params}) {
                 } else {
                     evaluatedStudent.status = 'not-rated';
                 }
+
+                    initialValue.current.isCreated = true;
+                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
+                    accountData.history.shift();
+                    initialValue.current.isCreated = false;
+                }
+                
 
                 evaluatedStudent.nilai.sikapPresentasi = sikapPresentasiValue;
                 evaluatedStudent.nilai.kemampuanPresentasi = kemampuanPresentasiValue;
@@ -100,7 +103,7 @@ export default function({params}) {
             <p>{student.NIM}</p>
         </div>
     </div>
-    <p className={classes['judul-ta']}><span>JUDUL TA : </span>{student.judul}</p>
+    <div className={classes['judul-ta']}><p>JUDUL TA : </p><p>{student.judul}</p></div>
     <p className={classes.penilaian}>Penilaian : </p>
     <div className={classes['input-wrapper']}>
         <div>

@@ -43,12 +43,7 @@ export default function({params}) {
 
                 if (total !== initialValue.current.value && !initialValue.current.isCreated) {
                     accountData.history.unshift({});
-                    initialValue.current.isCreated = true;
-                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
-                    accountData.history.shift();
-                    initialValue.current.isCreated = false;
-                }
-                const present = new Date()
+                    const present = new Date()
                 if (usahaValue && kreativitasValue && tanggungJawabValue && komunikasiValue) {
                     evaluatedStudent.status = 'rated';
                     accountData.history[0] = {description : `Anda telah menginputkan nilai Bimbingan KP ${student.nama} dengan nilai ${total}`, date : {date : `${present.getFullYear()}-${present.getMonth()}-${present.getDate()}`, time : {hour : present.getHours(), minute : present.getMinutes()}}};
@@ -57,6 +52,12 @@ export default function({params}) {
                     accountData.history[0] = {description : `Anda telah menginputkan nilai pada beberapa aspek penilaian Bimbingan KP ${student.nama}`, date : {date : `${present.getFullYear()}-${present.getMonth()}-${present.getDate()}`, time : {hour : present.getHours(), minute : present.getMinutes()}}};
                 } else {
                     evaluatedStudent.status = 'not-rated';
+                }
+                    initialValue.current.isCreated = true;
+                } else if (total === initialValue.current.value && initialValue.current.isCreated) {
+                    console.log("test1")
+                    accountData.history.shift();
+                    initialValue.current.isCreated = false;
                 }
 
                 evaluatedStudent.nilai.usaha = usahaValue;
@@ -84,7 +85,7 @@ export default function({params}) {
             <p>{student.NIM}</p>
         </div>
     </div>
-    <p className={classes['judul-kp']}><span>JUDUL KP : </span>{student.judul}</p>
+    <div className={classes['judul-kp']}><p>JUDUL KP : </p><p>{student.judul}</p></div>
     <p className={classes.penilaian}>Penilaian : </p>
     <div className={classes['input-wrapper']}>
     <InputNilai text="Usaha : " id="usaha" type="text" onChange={(e) => setUsahaValue(e.target.value)} value={usahaValue}/>

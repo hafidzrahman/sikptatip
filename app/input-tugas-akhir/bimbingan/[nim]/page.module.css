@@ -31,12 +31,18 @@
     margin-top: 27px;
     margin-left: 56px;
     margin-bottom: 39px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.judul-ta span {
+.judul-ta p:nth-child(1) {
     font-size: 22px;
     font-weight: bold;
-    margin-right: 357px;
+    /* margin-right: 357px; */
+}
+
+.judul-ta p:nth:child(2) {
+    max-width: 300px;
 }
 
 .penilaian {

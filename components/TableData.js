@@ -10,8 +10,6 @@ export default function({no, photo, nama, NIM, tenggatWaktu, status, total}) {
     const path = usePathname();
     const {stringDate, day} = deadline(tenggatWaktu);
 
-    console.log(day)
-
     let gagalStyle = ""
 
     const isExpired = expiredChecker(tenggatWaktu);
